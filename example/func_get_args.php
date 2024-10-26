@@ -73,8 +73,8 @@ function select()
     }
 }
 
-//$res = select(1); // by ID
+$res = select(1); // by ID
 // $res = select('user'); // by username
 // $res = select('user', 1); // by username and status
- $res = select('user', 0, 5); // by username with limit
+ //$res = select('user', 0, 5); // by username with limit
 ?>
