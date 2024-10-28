@@ -161,7 +161,8 @@ try {
         $results = $query ->table('User')
                     ->select(['id', 'username'])
                     ->where([['username','LIKE', 'user'],['email','LIKE', 'user']])
-                    ->where('id', '>', 1)->get();
+                    ->where('id', '>', 1)
+                    ->get();
 
         foreach ($results as $row) {
         echo "ID: " . $row['id'] . " - Username: " . $row['username'] . "<br>";

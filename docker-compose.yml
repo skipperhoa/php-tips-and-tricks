@@ -2,8 +2,11 @@ version: '3.8'  # Đảm bảo version là chuỗi
 services:
   app:
     build:
+      args:
+        user: thanhhoa
+        uid: 1000
       context: .                # Chỉ định thư mục chứa Dockerfile
-      dockerfile: Dockerfile     # Sử dụng Dockerfile để xây dựng dịch vụ PHP
+      dockerfile: DockerfileV2     # Sử dụng Dockerfile để xây dựng dịch vụ PHP
     working_dir: /var/www/html
     volumes:
       - .:/var/www/html
