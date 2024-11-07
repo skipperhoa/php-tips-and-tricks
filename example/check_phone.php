@@ -1,15 +1,6 @@
 <?php
 $array_number_phone = array(
-    "0961234567", 
-    "0977654321", 
-    "+84981234567", 
-    "+14155552671", 
-    "0033123456789", 
-    "+447911123456", 
-    "0862345678", 
-    "0912345678", 
-    "0948765432", 
-    "+61412345678" 
+    /** list phone */
 );
 
 $_GET['contry'] = 'default'; 
@@ -31,3 +22,5 @@ $results = array_map(function ($value) use ($pattern) {
 }, $array_number_phone);
 
 var_dump($results);
+
+?>
