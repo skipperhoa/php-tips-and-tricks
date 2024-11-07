@@ -71,7 +71,3 @@ class SlugHelper
 	  echo SlugHelper::slug($title,'-','en')."\n";
 	}
 
-<<<<<<< HEAD
-
-=======
->>>>>>> c58e9ab (update new)
