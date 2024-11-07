@@ -12,8 +12,7 @@ $array_number_phone = array(
     "+61412345678" // Úc (quốc tế)
 );
 
-$_GET['contry'] = 'default'; //Test nên cố tình đặt vậy :))
-
+$_GET['contry'] = 'default'; // Ví dụ :  mình tự đặt giá trị 
 $contry = (isset($_GET['contry']) && trim($_GET['contry'])!="")?$_GET['contry']:'default';
 
 $pattern = match ($contry) {
