@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 version: '3.8'  # Đảm bảo version là chuỗi
 services:
   app:
@@ -53,3 +54,61 @@ volumes:
     db-mysql:
         driver: local
   
+=======
+version: '3.8'  # Đảm bảo version là chuỗi
+services:
+  app:
+    build:
+      args:
+        user: thanhhoa
+        uid: 1000
+      context: .                # Chỉ định thư mục chứa Dockerfile
+      dockerfile: DockerfileV2     # Sử dụng Dockerfile để xây dựng dịch vụ PHP
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+    environment:                 # Thiết lập các biến môi trường cho kết nối MySQL
+      DB_HOST: db
+      DB_DATABASE: db_hoanguyencoder
+      DB_USERNAME: hoanguyencoder
+      DB_PASSWORD: 12345678
+    networks:
+      - networkHoaCoder
+
+  db:  
+    platform: linux/amd64                           # Dịch vụ MySQL
+    image: mysql:5.7              # Sử dụng hình ảnh MySQL 5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678    # Mật khẩu cho tài khoản root
+      MYSQL_DATABASE: db_hoanguyencoder   # Tạo cơ sở dữ liệu khi khởi động
+      MYSQL_USER: hoanguyencoder             # Tài khoản người dùng
+      MYSQL_PASSWORD: 12345678      # Mật khẩu cho tài khoản người dùng
+    ports:
+      - "3306:3306"                # Cổng truy cập MySQL từ bên ngoài
+    volumes:
+      - 'db-mysql:/var/lib/mysql'
+      - ./db_hoanguyencoder.sql:/docker-entrypoint-initdb.d/db_hoanguyencoder.sql  # Gọi tệp SQL
+    networks:
+      - networkHoaCoder
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:80"               # Cổng truy cập từ bên ngoài
+    volumes:
+      - .:/var/www/html
+      - ./nginx.conf:/etc/nginx/nginx.conf  # Sử dụng cấu hình Nginx tùy chỉnh
+    depends_on:
+      - app
+    networks:
+      - networkHoaCoder
+
+networks:
+  networkHoaCoder:
+    driver: bridge
+volumes:
+    db-mysql:
+        driver: local
+  
+>>>>>>> c58e9ab (update new)

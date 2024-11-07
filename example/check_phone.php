@@ -23,4 +23,8 @@ $results = array_map(function ($value) use ($pattern) {
 
 var_dump($results);
 
+<<<<<<< HEAD
 ?>
+=======
+?>
+>>>>>>> c58e9ab (update new)
