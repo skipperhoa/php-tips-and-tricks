@@ -65,3 +65,21 @@ GROUP BY category;
 
 UPDATE customer
 SET category = ELT(FLOOR(RAND() * 3) + 1, 'iphone', 'xiaomi', 'oppo');
+
+/**
+SQL này cập nhật giá trị của cột category trong bảng customer bằng cách chọn ngẫu nhiên một trong ba giá trị: 
+'iphone', 'xiaomi', hoặc 'oppo'.
+
+RAND(): Hàm này tạo ra một số ngẫu nhiên giữa 0 và 1 (>0 & <1)
+
+FLOOR(RAND() * 3) + 1:
+
+RAND() * 3 nhân số ngẫu nhiên (từ 0 đến 1) với 3, kết quả là một số thực từ 0 đến 3.
+
+FLOOR() lấy phần nguyên của số này (sẽ là 0, 1, hoặc 2).
+
++ 1 đảm bảo kết quả cuối cùng sẽ là 1, 2 hoặc 3.
+
+Hàm ELT chọn phần tử dựa trên vị trí
+
+*/
