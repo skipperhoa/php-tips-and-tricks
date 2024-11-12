@@ -1,4 +1,7 @@
 
+/* 
+1 : Thống kê độ tuổi
+ */
 $sql = "SELECT Customer.category, 
 		SUM(CASE WHEN (IF(Customer.year_old>1000,YEAR(CURDATE())-Customer.year_old,Customer.year_old)<18) THEN 1 ELSE 0 END) AS '18T', 
 		SUM(CASE WHEN (IF(Customer.year_old>1000,YEAR(CURDATE())-Customer.year_old,Customer.year_old)>17 AND IF(Customer.year_old>1000,YEAR(CURDATE())-Customer.year_old,Customer.year_old)<21) THEN 1 ELSE 0 END) AS '18T20', 
@@ -33,7 +36,7 @@ WHERE
 GROUP BY Customer.category;
 
 
-
+/*  or */
 WITH CustomerAge AS (
     SELECT 
         category,
@@ -60,16 +63,9 @@ FROM CustomerAge
 GROUP BY category;
 
 
-
-
-
-UPDATE customer
-SET category = ELT(FLOOR(RAND() * 3) + 1, 'iphone', 'xiaomi', 'oppo');
-
-/**
-SQL này cập nhật giá trị của cột category trong bảng customer bằng cách chọn ngẫu nhiên một trong ba giá trị: 
+/* 
+2 : Cập nhật giá trị của cột category trong bảng customer bằng cách chọn ngẫu nhiên một trong ba giá trị: 
 'iphone', 'xiaomi', hoặc 'oppo'.
-
 RAND(): Hàm này tạo ra một số ngẫu nhiên giữa 0 và 1 (>0 & <1)
 
 FLOOR(RAND() * 3) + 1:
@@ -81,5 +77,52 @@ FLOOR() lấy phần nguyên của số này (sẽ là 0, 1, hoặc 2).
 + 1 đảm bảo kết quả cuối cùng sẽ là 1, 2 hoặc 3.
 
 Hàm ELT chọn phần tử dựa trên vị trí
+ */
+UPDATE customer
+SET category = ELT(FLOOR(RAND() * 3) + 1, 'iphone', 'xiaomi', 'oppo');
 
+
+
+/**
+3 : SQL Query to rank employees within each department based on salary:
+rank() là hàm xếp hạng (ranking function) trong SQL.
+OVER xác định phạm vi tính toán của hàm rank().
+PARTITION BY depname chia dữ liệu theo từng depname (tức là chia thành các nhóm dựa trên tên phòng ban). Mỗi phòng ban là một nhóm riêng biệt.
+ORDER BY salary DESC xếp hạng theo cột salary trong mỗi nhóm, theo thứ tự giảm dần (tức là nhân viên có lương cao nhất sẽ được xếp hạng 1 trong phòng ban của mình).
 */
+SELECT depname, empno, salary,
+       rank() OVER (PARTITION BY depname ORDER BY salary DESC)
+FROM empsalary;
+
+/* Example demo */
+-- Tạo bảng empsalary
+CREATE TABLE empsalary (
+    depname VARCHAR(50),
+    empno INT,
+    salary DECIMAL(10, 2)
+);
+
+-- Chèn dữ liệu mẫu vào bảng empsalary
+INSERT INTO empsalary (depname, empno, salary) VALUES
+('Sales', 101, 5000),
+('Sales', 102, 4500),
+('Sales', 103, 5200),
+('Sales', 104, 4700),
+('Sales', 105, 5300),
+('HR', 201, 6000),
+('HR', 202, 5800),
+('HR', 203, 6200),
+('HR', 204, 5900),
+('HR', 205, 6100),
+('IT', 301, 7000),
+('IT', 302, 7200),
+('IT', 303, 6900),
+('IT', 304, 7100),
+('IT', 305, 7400),
+('Marketing', 401, 4800),
+('Marketing', 402, 4600),
+('Marketing', 403, 4900),
+('Marketing', 404, 4700),
+('Marketing', 405, 4500);
+
+
