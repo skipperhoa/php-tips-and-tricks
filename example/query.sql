@@ -1,6 +1,6 @@
 
-/* 
-1 : Thống kê độ tuổi
+/* 📌
+1️⃣ :  SQL Query to count customers by age group
  */
 $sql = "SELECT Customer.category, 
 		SUM(CASE WHEN (IF(Customer.year_old>1000,YEAR(CURDATE())-Customer.year_old,Customer.year_old)<18) THEN 1 ELSE 0 END) AS '18T', 
@@ -36,7 +36,7 @@ WHERE
 GROUP BY Customer.category;
 
 
-/*  or */
+/* 🟢 or */
 WITH CustomerAge AS (
     SELECT 
         category,
@@ -63,8 +63,8 @@ FROM CustomerAge
 GROUP BY category;
 
 
-/* 
-2 : Cập nhật giá trị của cột category trong bảng customer bằng cách chọn ngẫu nhiên một trong ba giá trị: 
+/* 📌
+2️⃣ : Cập nhật giá trị của cột category trong bảng customer bằng cách chọn ngẫu nhiên một trong ba giá trị: 
 'iphone', 'xiaomi', hoặc 'oppo'.
 RAND(): Hàm này tạo ra một số ngẫu nhiên giữa 0 và 1 (>0 & <1)
 
@@ -83,8 +83,8 @@ SET category = ELT(FLOOR(RAND() * 3) + 1, 'iphone', 'xiaomi', 'oppo');
 
 
 
-/**
-3 : SQL Query to rank employees within each department based on salary:
+/** 📌
+3️⃣ : SQL Query to rank employees within each department based on salary:
 rank() là hàm xếp hạng (ranking function) trong SQL.
 OVER xác định phạm vi tính toán của hàm rank().
 PARTITION BY depname chia dữ liệu theo từng depname (tức là chia thành các nhóm dựa trên tên phòng ban). Mỗi phòng ban là một nhóm riêng biệt.
