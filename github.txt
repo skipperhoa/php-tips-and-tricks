@@ -1,0 +1,25 @@
+…or create a new repository on the command line
+echo "# php-tips-and-tricks" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/skipperhoa/php-tips-and-tricks.git
+git push -u origin main
+…or push an existing repository from the command line
+git remote add origin https://github.com/skipperhoa/php-tips-and-tricks.git
+git branch -M main
+git push -u origin main
+
+-----------------------
+Cách cập nhật từ remote repository xuống project hiện tại:
+1. Tạm thời lưu trữ (stash) các tệp không theo dõi
+Stash các tệp không theo dõi: git stash push --include-untracked
+Kéo cập nhật từ remote: git pull
+Áp dụng lại stash (nếu cần): git stash pop
+
+Bỏ qua git stash pop: Không cần áp dụng lại các thay đổi đã stash.
+Nếu muốn, bạn có thể xóa stash một cách an toàn bằng lệnh:
+bash
+Sao chép mã
+git stash drop
