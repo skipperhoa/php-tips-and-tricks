@@ -1,7 +1,16 @@
 {
+   
     "require": {
         "illuminate/database": "^11.29",
         "illuminate/events": "^11.29",
-        "illuminate/support": "^11.29"
+        "illuminate/support": "^11.29",
+        "symfony/http-client": "^7.1",
+        "symfony/mailer": "^7.1",
+        "twig/twig": "^3.14"
+    },
+    "autoload": {
+        "psr-4": {
+              "App\\": "test/App/"
+        }
     }
 }
