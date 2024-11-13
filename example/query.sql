@@ -90,9 +90,11 @@ OVER xác định phạm vi tính toán của hàm rank().
 PARTITION BY depname chia dữ liệu theo từng depname (tức là chia thành các nhóm dựa trên tên phòng ban). Mỗi phòng ban là một nhóm riêng biệt.
 ORDER BY salary DESC xếp hạng theo cột salary trong mỗi nhóm, theo thứ tự giảm dần (tức là nhân viên có lương cao nhất sẽ được xếp hạng 1 trong phòng ban của mình).
 */
+
 SELECT depname, empno, salary,
        rank() OVER (PARTITION BY depname ORDER BY salary DESC)
 FROM empsalary;
+
 
 /* Example demo */
 -- Tạo bảng empsalary
@@ -128,19 +130,24 @@ INSERT INTO empsalary (depname, empno, salary) VALUES
 
 
 /* 
-4️⃣ : Lấy vị trí xếp hạn <3
-RANK(): Đây là một hàm phân tích (window function) dùng để tính toán thứ hạng của từng nhân viên trong mỗi nhóm phòng ban (depname), căn cứ vào các tiêu chí sắp xếp.
+4️⃣ : Lấy vị trí xếp hạng <3
+RANK(): Đây là một hàm phân tích (window function) dùng để tính toán thứ hạng của từng nhân viên trong mỗi nhóm phòng ban (depname),
+căn cứ vào các tiêu chí sắp xếp.
 
-PARTITION BY depname: Dữ liệu được chia thành các nhóm theo depname (tên phòng ban). Điều này có nghĩa là hàm RANK() sẽ thực hiện xếp hạng cho từng phòng ban riêng biệt.
+PARTITION BY depname: Dữ liệu được chia thành các nhóm theo depname (tên phòng ban). 
+Điều này có nghĩa là hàm RANK() sẽ thực hiện xếp hạng cho từng phòng ban riêng biệt.
 
-ORDER BY salary DESC, empno: Trong mỗi phòng ban, nhân viên sẽ được xếp hạng dựa trên mức lương (salary) theo thứ tự giảm dần (mức lương cao nhất được xếp hạng 1). Nếu có nhiều nhân viên có mức lương giống nhau, thứ hạng sẽ được phân biệt dựa trên empno (mã nhân viên), với nhân viên có mã nhỏ hơn sẽ được xếp hạng cao hơn.
+ORDER BY salary DESC, empno: Trong mỗi phòng ban, nhân viên sẽ được xếp hạng dựa trên mức lương (salary) 
+theo thứ tự giảm dần (mức lương cao nhất được xếp hạng 1). 
+Nếu có nhiều nhân viên có mức lương giống nhau, thứ hạng sẽ được phân biệt dựa trên empno (mã nhân viên), 
+với nhân viên có mã nhỏ hơn sẽ được xếp hạng cao hơn.
 
 AS pos: Đây là cột chứa thứ hạng của nhân viên trong phòng ban của họ, được tính từ hàm RANK().
  */
 SELECT depname, empno, salary, pos
 FROM
   (SELECT depname, empno, salary,
-          rank() OVER (PARTITION BY depname ORDER BY salary DESC, empno) AS pos
+          rank                    () OVER (PARTITION BY depname ORDER BY salary DESC, empno) AS pos
      FROM empsalary
   ) AS ss
 WHERE pos < 3;
