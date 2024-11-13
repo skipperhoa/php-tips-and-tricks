@@ -126,3 +126,22 @@ INSERT INTO empsalary (depname, empno, salary) VALUES
 ('Marketing', 405, 4500);
 
 
+
+/* 
+4️⃣ : Lấy vị trí xếp hạn <3
+RANK(): Đây là một hàm phân tích (window function) dùng để tính toán thứ hạng của từng nhân viên trong mỗi nhóm phòng ban (depname), căn cứ vào các tiêu chí sắp xếp.
+
+PARTITION BY depname: Dữ liệu được chia thành các nhóm theo depname (tên phòng ban). Điều này có nghĩa là hàm RANK() sẽ thực hiện xếp hạng cho từng phòng ban riêng biệt.
+
+ORDER BY salary DESC, empno: Trong mỗi phòng ban, nhân viên sẽ được xếp hạng dựa trên mức lương (salary) theo thứ tự giảm dần (mức lương cao nhất được xếp hạng 1). Nếu có nhiều nhân viên có mức lương giống nhau, thứ hạng sẽ được phân biệt dựa trên empno (mã nhân viên), với nhân viên có mã nhỏ hơn sẽ được xếp hạng cao hơn.
+
+AS pos: Đây là cột chứa thứ hạng của nhân viên trong phòng ban của họ, được tính từ hàm RANK().
+ */
+SELECT depname, empno, salary, pos
+FROM
+  (SELECT depname, empno, salary,
+          rank() OVER (PARTITION BY depname ORDER BY salary DESC, empno) AS pos
+     FROM empsalary
+  ) AS ss
+WHERE pos < 3;
+
