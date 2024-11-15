@@ -1,0 +1,129 @@
+Cách 1: Sử dụng Dockerfile
+Tạo một tệp Dockerfile trong thư mục dự án của bạn.
+
+Thêm nội dung sau vào Dockerfile để dùng PHP 8:
+
+dockerfile
+Sao chép mã
+# Sử dụng image PHP 8 chính thức từ Docker Hub
+FROM php:8.0-cli
+
+# Thiết lập thư mục làm việc
+WORKDIR /var/www/html
+
+# Sao chép mã của bạn vào container (tùy chọn)
+COPY . .
+
+# Chạy lệnh chính nếu cần (như một script PHP)
+CMD ["php", "index.php"]
+Xây dựng và chạy container:
+
+bash
+Sao chép mã
+docker build -t my-php-app .
+docker run -d my-php-app
+Cách 2: Sử dụng Docker Compose
+Tạo một tệp docker-compose.yml.
+
+Thêm cấu hình sau vào tệp để chạy PHP 8:
+
+yaml
+Sao chép mã
+version: '3.8'
+
+services:
+  php:
+    image: php:8.0-cli
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+    command: php index.php
+Chạy Docker Compose để khởi động dịch vụ PHP 8:
+
+bash
+Sao chép mã
+docker-compose up -d
+Sau khi thiết lập xong, container sẽ chạy PHP 8 và sẵn sàng xử lý các tác vụ của bạn.
+
+---------------------------------------
+Kiểm tra dữ liệu:
+
+Sau khi khởi động, bạn có thể kiểm tra xem dữ liệu đã được thêm vào bảng hay chưa bằng cách kết nối vào MySQL:
+bash
+Sao chép mã
+docker exec -it <tên_container_db> mysql -u user -p my_database
+(Thay <tên_container_db> bằng tên container của dịch vụ db, bạn có thể tìm tên container bằng lệnh docker ps).
+
+
+------------------
+ protected function whereInSub($column, Closure $callback, $boolean, $not)
+    {
+        $type = $not ? 'NotInSub' : 'InSub';
+
+        // To create the exists sub-select, we will actually create a query and call the
+        // provided callback with the query so the developer may set any of the query
+        // conditions they want for the in clause, then we'll put it in this array.
+     call_user_func($callback, $query = $this->newQuery());
+       $query = call_user_func($callback);
+
+        $this->wheres[] = compact('type', 'column', 'query', 'boolean');
+
+        $this->mergeBindings($query);
+
+        return $this;
+    }
+
+public function whereIn($column, $values, $boolean = 'and', $not = false)
+{
+    $type = $not ? 'NotIn' : 'In';
+
+    // If the value of the where in clause is actually a Closure, we will assume that
+    // the developer is using a full sub-select for this "in" statement, and will
+    // execute those Closures, then we can re-construct the entire sub-selects.
+    if ($values instanceof Closure)
+    {
+        return $this->whereInSub($column, $values, $boolean, $not);
+    }
+
+    $this->wheres[] = compact('type', 'column', 'values', 'boolean');
+
+    $this->bindings = array_merge($this->bindings, $values);
+
+    return $this;
+}
+
+}
+
+-------------------------
+https://github.com/oanhnn/docker-php/blob/master/8.2/fpm-alpine/Dockerfile
+docker-compose exec -it app sh
+
+docker network ls
+docker network inspect phptipsandtricks_networkHoaCoder
+
+-------------------------
+There are some great things about leaning a little more on Symfony Cache.
+
+Cache Items and Tags are detached. You can store big items in files, and use redis solely for tagging them.
+Stampede prevention with probabilistic early-expiration.
+Custom Marshalling and serialization. That means the dev could sign the serialization to avoid tampering.
+Programmatic prune. For example, the dev can change the probability to prune entries after a cache operation.
+Chained cache stores. Mix and match multiple caches.
+Redis tags adapter.
+I honestly don't think the extent of the changes, but I think it would make the cache system easier to maintain.
+
+// put it in AppServiceProvider for example
+$this->app->singleton(\Symfony\Contracts\Cache\TagAwareCacheInterface::class, function () {
+    $redisAdapter = new RedisAdapter(
+        $this->app->make('redis')
+            ->connection(config('cache.stores.redis.connection'))
+            ->client()
+    );
+
+    return new TagAwareAdapter($redisAdapter);
+});
+
+/**
+ * @var $cache \Symfony\Contracts\Cache\TagAwareCacheInterface&\Psr\Cache\CacheItemPoolInterface
+ */
+$cache = app(\Symfony\Contracts\Cache\TagAwareCacheInterface::class);
