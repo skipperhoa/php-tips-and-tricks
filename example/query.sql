@@ -144,6 +144,7 @@ với nhân viên có mã nhỏ hơn sẽ được xếp hạng cao hơn.
 
 AS pos: Đây là cột chứa thứ hạng của nhân viên trong phòng ban của họ, được tính từ hàm RANK().
  */
+
 SELECT depname, empno, salary, pos
 FROM
   (SELECT depname, empno, salary,
@@ -152,3 +153,53 @@ FROM
   ) AS ss
 WHERE pos < 3;
 
+
+/* 
+Chèn dữ liệu từ table2 của database db2 vào table1 của database db1.
+ */
+ 
+INSERT INTO db1.table1 (column1, column2, column3)
+SELECT column1, column2, column3
+FROM db2.table2;
+
+/* 
+Nếu cần lọc dữ liệu khi chèn, sử dụng điều kiện WHERE.
+Ví dụ: Chỉ chèn các hàng có giá trị column4 = 'some_value'.
+ */
+INSERT INTO db1.table1 (column1, column2, column3)
+SELECT column1, column2, column3
+FROM db2.table2
+WHERE column4 = 'some_value';
+
+/* 
+Chèn dữ liệu từ table2 vào table1. 
+Nếu trùng (dựa vào PRIMARY KEY hoặc UNIQUE KEY), thực hiện cập nhật dữ liệu (UPDATE).
+ */
+INSERT INTO db1.table1 (column1, column2, column3)
+SELECT column1, column2, column3
+FROM db2.table2
+ON DUPLICATE KEY UPDATE
+column2 = VALUES(column2),
+column3 = VALUES(column3);
+
+/* 
+Chèn dữ liệu từ table2 vào table1. 
+Đảm bảo chỉ chèn các hàng không trùng lặp (sử dụng điều kiện NOT EXISTS).
+ */
+INSERT INTO db1.table1 (column2, column3)
+SELECT column2, column3
+FROM db2.table2
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM db1.table1
+    WHERE db1.table1.column2 = db2.table2.column2
+      AND db1.table1.column3 = db2.table2.column3
+);
+
+/* 
+Cập nhật giá trị của một cột trong bảng, thay thế chuỗi cụ thể.
+Ví dụ: Thay '100daysofcode.hoanguyenit.com' bằng 'hoanguyenit.vn'.
+ */
+UPDATE your_table_name
+SET your_column_name = REPLACE(your_column_name, '100daysofcode.hoanguyenit.com', 'hoanguyenit.vn')
+WHERE your_column_name LIKE '%100daysofcode.hoanguyenit.com%';

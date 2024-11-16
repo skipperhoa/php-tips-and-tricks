@@ -6,7 +6,8 @@
         "illuminate/support": "^11.29",
         "symfony/http-client": "^7.1",
         "symfony/mailer": "^7.1",
-        "twig/twig": "^3.14"
+        "twig/twig": "^3.14",
+        "symfony/cache": "^7.1"
     },
     "autoload": {
         "psr-4": {
