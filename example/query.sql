@@ -157,7 +157,7 @@ WHERE pos < 3;
 /* 
 Chèn dữ liệu từ table2 của database db2 vào table1 của database db1.
  */
- 
+
 INSERT INTO db1.table1 (column1, column2, column3)
 SELECT column1, column2, column3
 FROM db2.table2;
@@ -198,7 +198,7 @@ WHERE NOT EXISTS (
 
 /* 
 Cập nhật giá trị của một cột trong bảng, thay thế chuỗi cụ thể.
-Ví dụ: Thay '100daysofcode.hoanguyenit.com' bằng 'hoanguyenit.vn'.
+Ví dụ: Thay '100daysofcode.hoanguyenit.com' bằng 'hoanguyenit.com'.
  */
 UPDATE your_table_name
 SET your_column_name = REPLACE(your_column_name, '100daysofcode.hoanguyenit.com', 'hoanguyenit.vn')
