@@ -3,6 +3,7 @@
 //Named Parameters: bạn có thể thay đổi thứ tự của các tham số, 
 //miễn là bạn chỉ định tên của tham số đúng với tên trong định nghĩa của hàm
 
+
 //Example 1: 
 function createUser($name, $role = 'user', $isActive = true) {
     
