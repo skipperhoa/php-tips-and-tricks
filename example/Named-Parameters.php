@@ -53,6 +53,19 @@ sendEmail(
 	function addProductToCart($id, $name, $quantity = 1, $price = 0) {
 		echo "Sản phẩm: $name (ID: $id), Số lượng: $quantity, Giá: $price\n";
 	}
+	function updateProductInCart($id, $name = null, $quantity = null, $price = null) {
+	    echo "Cập nhật sản phẩm ID: $id\n";
+	    if ($name !== null) {
+	        echo "- Tên mới: $name\n";
+	    }
+	    if ($quantity !== null) {
+	        echo "- Số lượng mới: $quantity\n";
+	    }
+	    if ($price !== null) {
+	        echo "- Giá mới: $price\n";
+	    }
+	    echo "Cập nhật thành công!\n";
+	}
 	
 	// Object không theo thứ tự của function
 	$product = (object) [
@@ -69,4 +82,21 @@ sendEmail(
 		price: $product->price,
 		quantity: $product->quantity
 	);
+
+	// Object thông tin cần update
+	$updateData = (object) [
+		'id' => 101,
+		'quantity' => 5, // Chỉ thay đổi số lượng
+		'price' => 1800   // Và giá
+	];
+
+	// Sử dụng Named Parameters để cập nhật sản phẩm
+	updateProductInCart(
+		id: $updateData->id,
+		quantity: $updateData->quantity,
+		price: $updateData->price
+	);
+
+
+	
 	
