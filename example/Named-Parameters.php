@@ -49,7 +49,7 @@ sendEmail(
 	isHtml: true);
 
 
-
+/// Example 4
 	function addProductToCart($id, $name, $quantity = 1, $price = 0) {
 		echo "Sản phẩm: $name (ID: $id), Số lượng: $quantity, Giá: $price\n";
 	}
