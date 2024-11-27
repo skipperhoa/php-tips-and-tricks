@@ -1,0 +1,74 @@
+1. Các lệnh cơ bản với Docker
+Khởi động và dừng container
++ Chạy container từ image: docker run -d --name <container_name> -p 8080:80 <image_name>
++ Dừng container : docker stop <container_name>
++ Khởi động lại container: docker start <container_name>
+
+* Quản lý container
++ Liệt kê các container đang chạy: docker ps
++ Liệt kê tất cả container (bao gồm cả container đã dừng): docker ps -a
++ Xóa container: docker rm <container_name>
+
+* Quản lý image
++ Liệt kê các image: docker images
++ Xóa image: docker rmi <image_name>
++ Kéo image từ Docker Hub: docker pull <image_name>
+
+* Kiểm tra container
++ Chạy lập trình trong container: docker exec -it <container_name> /bin/bash
++ Xem log container: docker logs <container_name>
++ Truy cập vào container: docker exec -it <container_name> sh
+Hoặc dùng bash nếu được hỗ trợ: docker exec -it <container_name> bash
+
+* Kiểm tra cấu hình container:
++ Hiển thị thông tin chi tiết container: docker inspect <container_name>
+
+2. Các lệnh thường dùng với Docker Compose
+* Quản lý dịch vụ
+  + Khởi động dịch vụ : docker-compose up -d
+  + Dừng dịch vụ : docker-compose down
+  + Dừng dịch vụ và xóa volumes: docker-compose down -v
+
+* Kiểm tra dịch vụ
+  + Hiển thị danh sách dịch vụ đang chạy: docker-compose ps
+  + Kiểm tra log của dịch vụ : docker-compose logs
+  + Kiểm tra log của một dịch vụ cụ thể: docker-compose logs <service_name>
+
+* Xây dựng lại image
+  + Xây dựng lại image từ Dockerfile: docker-compose build
+  + Xây dựng lại image và chạy lại container: docker-compose up --build
+
+3. Quản lý volume và network
+* Volume
+  + Liệt kê tất cả volumes: docker volume ls
+  + Xóa một volume : docker volume rm <volume_name>
+  + Kiểm tra volume đang được gắn vào container nào  : docker inspect <container_name> | grep Mounts -A 10
+
+* Network
+  + Liệt kê tất cả networks: docker network ls
+  + Xóa một network: docker network rm <network_name>
+ 
+4. Debug và kiểm tra lỗi
+  + Kiểm tra log container: docker logs <container_name>
+  + Xem chi tiết cấu hình container: docker inspect <container_name>
+  + Xem các container đã bị lỗi: docker ps -a | grep "Exited"
+
+
+5. Dọn dẹp hệ thống Docker
+  + Xóa tất cả container đã dừng: docker container prune
+  + Xóa tất cả volume không được sử dụng : docker volume prune
+  + Xóa tất cả images không được sử dụng : docker image prune
+  + Dọn dẹp toàn bộ hệ thống Docker (container, image, volume, network): docker system prune -a
+  
+6. Một số câu lệnh tiện ích
+* Sử dụng file khác trong Docker Compose
+  + Chỉ định file docker-compose cụ thể: docker-compose -f docker-compose.override.yml up -d
+  + Theo dõi log trực tiếp (real-time): docker-compose logs -f
+  + Xem tài nguyên container đang dùng: docker stats
+
+7. Câu lệnh kiểm tra volume được mount đúng
+  * Kiểm tra nội dung volume trên container
+  docker exec -it <container_name> sh
+  ls -la /path/to/volume
+
+

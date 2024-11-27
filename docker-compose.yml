@@ -11,6 +11,7 @@ services: # Chứa định nghĩa của từng dịch vụ.
     working_dir: /var/www/html     #Thiết lập thư mục làm việc trong container là /var/www/html
     volumes: 
       - .:/var/www/html    # Gắn thư mục mã nguồn từ máy host (.) vào container tại /var/www/html
+      - ./php-config/conf:/usr/local/etc/php/conf.d/  # Đồng bộ cấu hình PHP từ máy host
     environment:                 # Thiết lập các biến môi trường cho kết nối MySQL
       DB_HOST: db  # Tên của dịch vụ cơ sở dữ liệu (db)
       DB_DATABASE: db_hoanguyencoder
