@@ -49,7 +49,7 @@ RUN apk add --no-cache --virtual build-essentials \
     apk del build-essentials && rm -rf /usr/src/php*
 #---------------------------------------------------------------
 
-# Bước 4: 
+# Bước 5: 
 # Tải và cài đặt Composer (trình quản lý gói cho PHP)
 # File được tải về và lưu ở đường dẫn /usr/local/bin/composer.
 # Gán quyền thực thi cho Composer với chmod +x.
@@ -57,7 +57,7 @@ RUN wget https://getcomposer.org/composer-stable.phar -O /usr/local/bin/composer
 
 #---------------------------------------------------------------
 
-# Bước 5: 
+# Bước 6: 
 # RUN useradd : Tạo một người dùng hệ thống trong container:
 # User này được thêm vào nhóm www-data (nhóm thường được sử dụng bởi PHP-FPM) và root.
 # User ID được khớp với uid để tránh lỗi permission.
@@ -68,12 +68,12 @@ RUN useradd -G www-data,root -u $uid -d /home/$user $user
 RUN mkdir -p /home/$user/.composer && \
     chown -R $user:$user /home/$user
 #---------------------------------------------------------------
-# Bước 6: 
+# Bước 7: 
 # Sao chép mã nguồn từ thư mục hiện tại trên máy host vào thư mục /var/www/html trong container.
 COPY . /var/www/html
 
 #---------------------------------------------------------------
-# Bước 7: 
+# Bước 8: 
 # CMD ["php-fpm"] : Định nghĩa lệnh khởi chạy mặc định cho container, ở đây là php-fpm.
 # php-fpm sẽ chạy và lắng nghe các yêu cầu từ web server (ví dụ: Nginx).
 CMD ["php-fpm"]
