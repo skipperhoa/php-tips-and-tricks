@@ -1,56 +1,57 @@
-version: '3.8'  # Đảm bảo version là chuỗi
-services:
-  app:
+# Định nghĩa phiên bản của Docker Compose. Phiên bản 3.8 hỗ trợ các tính năng mới nhất (tương thích với Docker Engine hiện đại).
+version: '3.8'  
+services: # Chứa định nghĩa của từng dịch vụ.
+  app: # chạy PHP (với Dockerfile được xây dựng tùy chỉnh)
     build:
       args:
-        user: thanhhoa
+        user: thanhhoa # Truyền các biến user và uid vào Dockerfile (sử dụng trong lệnh ARG).
         uid: 1000
-      context: .                # Chỉ định thư mục chứa Dockerfile
-      dockerfile: DockerfileV2     # Sử dụng Dockerfile để xây dựng dịch vụ PHP
-    working_dir: /var/www/html
-    volumes:
-      - .:/var/www/html
+      context: .                   # Chỉ định thư mục hiện tại làm chứa Dockerfile
+      dockerfile: DockerfileV2     # Xây dựng image PHP từ Dockerfile
+    working_dir: /var/www/html     #Thiết lập thư mục làm việc trong container là /var/www/html
+    volumes: 
+      - .:/var/www/html    # Gắn thư mục mã nguồn từ máy host (.) vào container tại /var/www/html
     environment:                 # Thiết lập các biến môi trường cho kết nối MySQL
-      DB_HOST: db
+      DB_HOST: db  # Tên của dịch vụ cơ sở dữ liệu (db)
       DB_DATABASE: db_hoanguyencoder
       DB_USERNAME: hoanguyencoder
       DB_PASSWORD: 12345678
     networks:
-      - networkHoaCoder
+      - networkHoaCoder # Kết nối dịch vụ này vào mạng , ví dụ : networkHoaCoder
 
   db:  
-    platform: linux/amd64                           # Dịch vụ MySQL
-    image: mysql:5.7              # Sử dụng hình ảnh MySQL 5.7
-    restart: always
+    platform: linux/amd64    # Đảm bảo sử dụng kiến trúc amd64 (trong Mac M1)
+    image: mysql:5.7         # Sử dụng hình ảnh MySQL 5.7
+    restart: always          # Tự động khởi động lại nếu container gặp sự cố. 
     environment:
-      MYSQL_ROOT_PASSWORD: 12345678    # Mật khẩu cho tài khoản root
+      MYSQL_ROOT_PASSWORD: 12345678       # Mật khẩu cho tài khoản root
       MYSQL_DATABASE: db_hoanguyencoder   # Tạo cơ sở dữ liệu khi khởi động
-      MYSQL_USER: hoanguyencoder             # Tài khoản người dùng
-      MYSQL_PASSWORD: 12345678      # Mật khẩu cho tài khoản người dùng
+      MYSQL_USER: hoanguyencoder          # Tài khoản người dùng
+      MYSQL_PASSWORD: 12345678            # Mật khẩu cho tài khoản người dùng
     ports:
-      - "3306:3306"                # Cổng truy cập MySQL từ bên ngoài
+      - "3306:3306"                # Map cổng 3306 (cổng mặc định của MySQL) trên container với máy host
     volumes:
-      - 'db-mysql:/var/lib/mysql'
-      - ./db_hoanguyencoder.sql:/docker-entrypoint-initdb.d/db_hoanguyencoder.sql  # Gọi tệp SQL
+      - 'db-mysql:/var/lib/mysql'  # db-mysql: Volume lưu trữ dữ liệu MySQL.
+      - ./db_hoanguyencoder.sql:/docker-entrypoint-initdb.d/db_hoanguyencoder.sql  # Tệp db_hoanguyencoder.sql từ máy host sẽ được nạp khi container khởi động (đặt vào /docker-entrypoint-initdb.d/).
     networks:
-      - networkHoaCoder
+      - networkHoaCoder   # Kết nối dịch vụ vào mạng networkHoaCoder
 
-  nginx:
-    image: nginx:latest
+  nginx:  # Máy chủ web xử lý các yêu cầu HTTP và chuyển tiếp đến PHP (FPM)
+    image: nginx:latest  # Sử dụng phiên bản mới nhất của Nginx.
     ports:
-      - "8080:80"               # Cổng truy cập từ bên ngoài
+      - "8080:80"               # Map cổng 80 trong container với cổng 8080 trên máy host
     volumes:
-      - .:/var/www/html
-      - ./nginx.conf:/etc/nginx/nginx.conf  # Sử dụng cấu hình Nginx tùy chỉnh
-    depends_on:
-      - app
+      - .:/var/www/html  # Gắn thư mục mã nguồn (.) vào /var/www/html
+      - ./nginx.conf:/etc/nginx/nginx.conf  # Gắn tệp cấu hình Nginx từ máy host vào container tại /etc/nginx/nginx.conf
+    depends_on: 
+      - app  # Đảm bảo dịch vụ app khởi động trước khi Nginx chạy.
     networks:
-      - networkHoaCoder
+      - networkHoaCoder  # Kết nối dịch vụ này vào mạng networkHoaCoder.
 
-networks:
+networks: 
   networkHoaCoder:
-    driver: bridge
+    driver: bridge  # driver: bridge: Tạo một mạng kiểu bridge, cho phép các container trong mạng này giao tiếp với nhau.
 volumes:
     db-mysql:
-        driver: local
+        driver: local  # driver: local: Volume lưu trữ dữ liệu MySQL để không bị mất khi container dừng.
   
