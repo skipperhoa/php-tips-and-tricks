@@ -1,12 +1,40 @@
+# Bước 1: 
+# Ý nghĩa: Sử dụng PHP 8.2 trên Alpine Linux làm image cơ bản.
+# PHP-FPM: Đây là một FastCGI Process Manager cho PHP, được tối ưu hóa để xử lý các ứng dụng web nhanh chóng.
 FROM php:8.2-fpm-alpine
+#---------------------------------------------------------------
 
-# Arguments defined in docker-compose.yml
+# Bước 2: 
+# Tên người dùng sẽ được tạo trong container
 ARG user
+# User ID của người dùng. Điều này giúp khớp user trong container với user trên máy host, tránh lỗi quyền truy cập file.
 ARG uid
+
+# Đặt thư mục làm việc của container là /var/www/html. Đây là nơi mã nguồn của ứng dụng PHP sẽ được lưu trữ và chạy.
 WORKDIR /var/www/html
 
+# Bước 3: 
+#---------------------------------------------------------------
+# apk add : Công cụ để cài đặt các gói phần mềm trong Alpine Linux.
+# mysql-client: Cho phép sử dụng các lệnh liên quan đến MySQL (như mysql, mysqldump).
+# msmtp: Một SMTP client, thường được dùng để gửi email từ container.
+# icu, icu-data-full: Gói hỗ trợ cho việc xử lý văn bản đa ngôn ngữ (quan trọng cho intl extension trong PHP).
+# libzip, libpng, libjpeg-turbo, libwebp, freetype: Các thư viện cho xử lý ảnh và zip.
 RUN apk add --no-cache mysql-client msmtp perl wget procps shadow libzip libpng libjpeg-turbo libwebp freetype icu icu-data-full
+#---------------------------------------------------------------
 
+# Bước 4: 
+# Cài đặt một tập hợp các công cụ cần thiết để biên dịch các phần mở rộng PHP
+# docker-php-ext-configure: Định cấu hình extension gd với các tùy chọn như:
+    #- Hỗ trợ freetype, jpeg, webp (thường dùng cho xử lý ảnh).
+# docker-php-ext-install: Cài đặt các extension:
+    #- gd: Xử lý ảnh.
+    #- mysqli và pdo_mysql: Kết nối với MySQL.
+    #- intl: Hỗ trợ đa ngôn ngữ.
+    #- opcache: Tăng tốc thực thi PHP.
+    #- exif: Xử lý metadata của ảnh.
+    #- zip: Nén và giải nén file.
+# Sau khi cài đặt xong, các công cụ build được gỡ bỏ để giảm kích thước image (apk del build-essentials).
 RUN apk add --no-cache --virtual build-essentials \
     icu-dev icu-libs zlib-dev g++ make automake autoconf libzip-dev \
     libpng-dev libwebp-dev libjpeg-turbo-dev freetype-dev && \
@@ -19,16 +47,47 @@ RUN apk add --no-cache --virtual build-essentials \
     docker-php-ext-install exif && \
     docker-php-ext-install zip && \
     apk del build-essentials && rm -rf /usr/src/php*
+#---------------------------------------------------------------
 
+# Bước 4: 
+# Tải và cài đặt Composer (trình quản lý gói cho PHP)
+# File được tải về và lưu ở đường dẫn /usr/local/bin/composer.
+# Gán quyền thực thi cho Composer với chmod +x.
 RUN wget https://getcomposer.org/composer-stable.phar -O /usr/local/bin/composer && chmod +x /usr/local/bin/composer
 
-# Create system user to run Composer and Artisan Commands
+#---------------------------------------------------------------
+
+# Bước 5: 
+# RUN useradd : Tạo một người dùng hệ thống trong container:
+# User này được thêm vào nhóm www-data (nhóm thường được sử dụng bởi PHP-FPM) và root.
+# User ID được khớp với uid để tránh lỗi permission.
+# Tạo thư mục Composer:
+# /home/$user/.composer: Composer sử dụng thư mục này để lưu cache và cấu hình.
+# Quyền sở hữu được gán cho user mới tạo.
 RUN useradd -G www-data,root -u $uid -d /home/$user $user
 RUN mkdir -p /home/$user/.composer && \
     chown -R $user:$user /home/$user
-
-# Copy source code to container (if needed)
+#---------------------------------------------------------------
+# Bước 6: 
+# Sao chép mã nguồn từ thư mục hiện tại trên máy host vào thư mục /var/www/html trong container.
 COPY . /var/www/html
 
+#---------------------------------------------------------------
+# Bước 7: 
+# CMD ["php-fpm"] : Định nghĩa lệnh khởi chạy mặc định cho container, ở đây là php-fpm.
+# php-fpm sẽ chạy và lắng nghe các yêu cầu từ web server (ví dụ: Nginx).
 CMD ["php-fpm"]
+
+
+# PS E:\FullStackDeveloper\PHP Tips and Tricks> docker ps
+# CONTAINER ID   IMAGE                  COMMAND                  CREATED              STATUS              PORTS                               NAMESbbe2edb95ff7   nginx:latest           "/docker-entrypoint.…"   About a minute ago   Up About a minute   0.0.0.0:8080->80/tcp                phptipsandtricks-nginx-1
+# 9efce0fcd1d6   phptipsandtricks-app   "docker-php-entrypoi…"   About a minute ago   Up About a minute   9000/tcp                            phptipsandtricks-app-1
+# 35124e6adefd   mysql:5.7              "docker-entrypoint.s…"   About a minute ago   Up About a minute   0.0.0.0:3306->3306/tcp, 33060/tcp   phptipsandtricks-db-1
+# PS E:\FullStackDeveloper\PHP Tips and Tricks> docker exec -it phptipsandtricks-app-1 sh
+# /var/www/html # php -v
+# PHP 8.2.26 (cli) (built: Nov 21 2024 18:05:01) (NTS)
+# Copyright (c) The PHP Group
+# Zend Engine v4.2.26, Copyright (c) Zend Technologies
+#     with Zend OPcache v8.2.26, Copyright (c), by Zend Technologies
+# /var/www/html # 
 
