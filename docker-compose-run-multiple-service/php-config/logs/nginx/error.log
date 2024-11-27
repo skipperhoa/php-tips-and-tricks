@@ -1,0 +1,388 @@
+2024/11/27 08:07:45 [warn] 1#1: server name "/var/www/html" has suspicious symbols in /etc/nginx/conf.d/site2.conf:4
+2024/11/27 08:07:45 [notice] 1#1: using the "epoll" event method
+2024/11/27 08:07:45 [notice] 1#1: nginx/1.27.2
+2024/11/27 08:07:45 [notice] 1#1: built by gcc 12.2.0 (Debian 12.2.0-14) 
+2024/11/27 08:07:45 [notice] 1#1: OS: Linux 5.15.146.1-microsoft-standard-WSL2
+2024/11/27 08:07:45 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2024/11/27 08:07:45 [notice] 1#1: start worker processes
+2024/11/27 08:07:45 [notice] 1#1: start worker process 28
+2024/11/27 08:07:45 [notice] 1#1: start worker process 29
+2024/11/27 08:07:45 [notice] 1#1: start worker process 30
+2024/11/27 08:07:45 [notice] 1#1: start worker process 31
+2024/11/27 08:08:23 [error] 30#30: *3 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 172.24.0.1, server: site2.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.24.0.2:9000", host: "site2.local"
+2024/11/27 08:08:25 [error] 30#30: *3 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 172.24.0.1, server: site2.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.24.0.2:9000", host: "site2.local"
+2024/11/27 08:08:25 [error] 30#30: *3 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 172.24.0.1, server: site2.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.24.0.2:9000", host: "site2.local"
+2024/11/27 08:09:08 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2024/11/27 08:09:08 [notice] 28#28: gracefully shutting down
+2024/11/27 08:09:08 [notice] 31#31: gracefully shutting down
+2024/11/27 08:09:08 [notice] 29#29: gracefully shutting down
+2024/11/27 08:09:08 [notice] 30#30: gracefully shutting down
+2024/11/27 08:09:08 [notice] 29#29: exiting
+2024/11/27 08:09:08 [notice] 30#30: exiting
+2024/11/27 08:09:08 [notice] 29#29: exit
+2024/11/27 08:09:08 [notice] 30#30: exit
+2024/11/27 08:09:08 [notice] 1#1: signal 17 (SIGCHLD) received from 30
+2024/11/27 08:09:08 [notice] 1#1: worker process 29 exited with code 0
+2024/11/27 08:09:08 [notice] 1#1: worker process 30 exited with code 0
+2024/11/27 08:09:08 [notice] 1#1: signal 29 (SIGIO) received
+2024/11/27 08:09:10 [notice] 28#28: exiting
+2024/11/27 08:09:10 [notice] 28#28: exit
+2024/11/27 08:09:10 [notice] 1#1: signal 17 (SIGCHLD) received from 28
+2024/11/27 08:09:10 [notice] 1#1: worker process 28 exited with code 0
+2024/11/27 08:09:10 [notice] 1#1: signal 29 (SIGIO) received
+2024/11/27 08:09:19 [warn] 1#1: server name "/var/www/html" has suspicious symbols in /etc/nginx/conf.d/site1.conf:4
+2024/11/27 08:09:19 [warn] 1#1: server name "/var/www/html" has suspicious symbols in /etc/nginx/conf.d/site2.conf:4
+2024/11/27 08:09:19 [warn] 1#1: conflicting server name "root" on 0.0.0.0:80, ignored
+2024/11/27 08:09:19 [warn] 1#1: conflicting server name "/var/www/html" on 0.0.0.0:80, ignored
+2024/11/27 08:09:19 [notice] 1#1: using the "epoll" event method
+2024/11/27 08:09:19 [notice] 1#1: nginx/1.27.2
+2024/11/27 08:09:19 [notice] 1#1: built by gcc 12.2.0 (Debian 12.2.0-14) 
+2024/11/27 08:09:19 [notice] 1#1: OS: Linux 5.15.146.1-microsoft-standard-WSL2
+2024/11/27 08:09:19 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2024/11/27 08:09:19 [notice] 1#1: start worker processes
+2024/11/27 08:09:19 [notice] 1#1: start worker process 28
+2024/11/27 08:09:19 [notice] 1#1: start worker process 29
+2024/11/27 08:09:19 [notice] 1#1: start worker process 30
+2024/11/27 08:09:19 [notice] 1#1: start worker process 31
+2024/11/27 08:09:23 [error] 28#28: *1 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 172.24.0.1, server: site1.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.24.0.2:9000", host: "site1.local"
+2024/11/27 08:10:39 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2024/11/27 08:10:39 [notice] 28#28: gracefully shutting down
+2024/11/27 08:10:39 [notice] 28#28: exiting
+2024/11/27 08:10:39 [notice] 29#29: gracefully shutting down
+2024/11/27 08:10:39 [notice] 30#30: gracefully shutting down
+2024/11/27 08:10:39 [notice] 31#31: gracefully shutting down
+2024/11/27 08:10:39 [notice] 28#28: exit
+2024/11/27 08:10:39 [notice] 29#29: exiting
+2024/11/27 08:10:39 [notice] 29#29: exit
+2024/11/27 08:10:39 [notice] 30#30: exiting
+2024/11/27 08:10:39 [notice] 31#31: exiting
+2024/11/27 08:10:39 [notice] 30#30: exit
+2024/11/27 08:10:39 [notice] 31#31: exit
+2024/11/27 08:10:39 [notice] 1#1: signal 17 (SIGCHLD) received from 29
+2024/11/27 08:10:39 [notice] 1#1: worker process 28 exited with code 0
+2024/11/27 08:10:39 [notice] 1#1: worker process 29 exited with code 0
+2024/11/27 08:10:39 [notice] 1#1: worker process 30 exited with code 0
+2024/11/27 08:10:39 [notice] 1#1: worker process 31 exited with code 0
+2024/11/27 08:10:39 [notice] 1#1: exit
+2024/11/27 08:10:40 [emerg] 1#1: "events" directive is not allowed here in /etc/nginx/conf.d/site1.conf:1
+2024/11/27 08:10:59 [emerg] 1#1: "events" directive is not allowed here in /etc/nginx/conf.d/site1.conf:1
+2024/11/27 08:12:30 [emerg] 1#1: "events" directive is not allowed here in /etc/nginx/conf.d/site1.conf:1
+2024/11/27 08:13:15 [emerg] 1#1: "events" directive is not allowed here in /etc/nginx/conf.d/site1.conf:1
+2024/11/27 08:13:43 [emerg] 1#1: "events" directive is not allowed here in /etc/nginx/conf.d/site1.conf:1
+2024/11/27 08:14:51 [notice] 1#1: using the "epoll" event method
+2024/11/27 08:14:51 [notice] 1#1: nginx/1.27.2
+2024/11/27 08:14:51 [notice] 1#1: built by gcc 12.2.0 (Debian 12.2.0-14) 
+2024/11/27 08:14:51 [notice] 1#1: OS: Linux 5.15.146.1-microsoft-standard-WSL2
+2024/11/27 08:14:51 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2024/11/27 08:14:51 [notice] 1#1: start worker processes
+2024/11/27 08:14:51 [notice] 1#1: start worker process 27
+2024/11/27 08:14:51 [notice] 1#1: start worker process 28
+2024/11/27 08:14:51 [notice] 1#1: start worker process 29
+2024/11/27 08:14:51 [notice] 1#1: start worker process 30
+2024/11/27 08:14:54 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2024/11/27 08:14:54 [notice] 29#29: gracefully shutting down
+2024/11/27 08:14:54 [notice] 28#28: gracefully shutting down
+2024/11/27 08:14:54 [notice] 27#27: gracefully shutting down
+2024/11/27 08:14:54 [notice] 30#30: gracefully shutting down
+2024/11/27 08:14:54 [notice] 29#29: exiting
+2024/11/27 08:14:54 [notice] 28#28: exiting
+2024/11/27 08:14:54 [notice] 27#27: exiting
+2024/11/27 08:14:54 [notice] 30#30: exiting
+2024/11/27 08:14:54 [notice] 29#29: exit
+2024/11/27 08:14:54 [notice] 28#28: exit
+2024/11/27 08:14:54 [notice] 27#27: exit
+2024/11/27 08:14:54 [notice] 30#30: exit
+2024/11/27 08:14:54 [notice] 1#1: signal 17 (SIGCHLD) received from 29
+2024/11/27 08:14:54 [notice] 1#1: worker process 29 exited with code 0
+2024/11/27 08:14:54 [notice] 1#1: signal 29 (SIGIO) received
+2024/11/27 08:14:54 [notice] 1#1: signal 17 (SIGCHLD) received from 27
+2024/11/27 08:14:54 [notice] 1#1: worker process 27 exited with code 0
+2024/11/27 08:14:54 [notice] 1#1: worker process 28 exited with code 0
+2024/11/27 08:14:54 [notice] 1#1: worker process 30 exited with code 0
+2024/11/27 08:14:54 [notice] 1#1: exit
+2024/11/27 08:14:57 [notice] 1#1: using the "epoll" event method
+2024/11/27 08:14:57 [notice] 1#1: nginx/1.27.2
+2024/11/27 08:14:57 [notice] 1#1: built by gcc 12.2.0 (Debian 12.2.0-14) 
+2024/11/27 08:14:57 [notice] 1#1: OS: Linux 5.15.146.1-microsoft-standard-WSL2
+2024/11/27 08:14:57 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2024/11/27 08:14:57 [notice] 1#1: start worker processes
+2024/11/27 08:14:57 [notice] 1#1: start worker process 28
+2024/11/27 08:14:57 [notice] 1#1: start worker process 29
+2024/11/27 08:14:57 [notice] 1#1: start worker process 30
+2024/11/27 08:14:57 [notice] 1#1: start worker process 31
+2024/11/27 08:15:09 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2024/11/27 08:15:09 [notice] 29#29: gracefully shutting down
+2024/11/27 08:15:09 [notice] 31#31: gracefully shutting down
+2024/11/27 08:15:09 [notice] 30#30: gracefully shutting down
+2024/11/27 08:15:09 [notice] 28#28: gracefully shutting down
+2024/11/27 08:15:09 [notice] 29#29: exiting
+2024/11/27 08:15:09 [notice] 31#31: exiting
+2024/11/27 08:15:09 [notice] 30#30: exiting
+2024/11/27 08:15:09 [notice] 28#28: exiting
+2024/11/27 08:15:09 [notice] 29#29: exit
+2024/11/27 08:15:09 [notice] 31#31: exit
+2024/11/27 08:15:09 [notice] 30#30: exit
+2024/11/27 08:15:09 [notice] 28#28: exit
+2024/11/27 08:15:09 [notice] 1#1: signal 17 (SIGCHLD) received from 28
+2024/11/27 08:15:09 [notice] 1#1: worker process 28 exited with code 0
+2024/11/27 08:15:09 [notice] 1#1: signal 29 (SIGIO) received
+2024/11/27 08:15:09 [notice] 1#1: signal 17 (SIGCHLD) received from 29
+2024/11/27 08:15:09 [notice] 1#1: worker process 29 exited with code 0
+2024/11/27 08:15:09 [notice] 1#1: worker process 30 exited with code 0
+2024/11/27 08:15:09 [notice] 1#1: signal 29 (SIGIO) received
+2024/11/27 08:15:09 [notice] 1#1: signal 17 (SIGCHLD) received from 31
+2024/11/27 08:15:09 [notice] 1#1: worker process 31 exited with code 0
+2024/11/27 08:15:09 [notice] 1#1: exit
+2024/11/27 08:15:12 [notice] 1#1: using the "epoll" event method
+2024/11/27 08:15:12 [notice] 1#1: nginx/1.27.2
+2024/11/27 08:15:12 [notice] 1#1: built by gcc 12.2.0 (Debian 12.2.0-14) 
+2024/11/27 08:15:12 [notice] 1#1: OS: Linux 5.15.146.1-microsoft-standard-WSL2
+2024/11/27 08:15:12 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2024/11/27 08:15:12 [notice] 1#1: start worker processes
+2024/11/27 08:15:12 [notice] 1#1: start worker process 28
+2024/11/27 08:15:12 [notice] 1#1: start worker process 29
+2024/11/27 08:15:12 [notice] 1#1: start worker process 30
+2024/11/27 08:15:12 [notice] 1#1: start worker process 31
+2024/11/27 08:15:16 [error] 28#28: *1 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 172.24.0.1, server: site1.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.24.0.2:9000", host: "site1.local"
+2024/11/27 08:16:53 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2024/11/27 08:16:53 [notice] 28#28: gracefully shutting down
+2024/11/27 08:16:53 [notice] 28#28: exiting
+2024/11/27 08:16:53 [notice] 29#29: gracefully shutting down
+2024/11/27 08:16:53 [notice] 30#30: gracefully shutting down
+2024/11/27 08:16:53 [notice] 31#31: gracefully shutting down
+2024/11/27 08:16:53 [notice] 28#28: exit
+2024/11/27 08:16:53 [notice] 29#29: exiting
+2024/11/27 08:16:53 [notice] 30#30: exiting
+2024/11/27 08:16:53 [notice] 31#31: exiting
+2024/11/27 08:16:53 [notice] 29#29: exit
+2024/11/27 08:16:53 [notice] 30#30: exit
+2024/11/27 08:16:53 [notice] 31#31: exit
+2024/11/27 08:16:53 [notice] 1#1: signal 17 (SIGCHLD) received from 29
+2024/11/27 08:16:53 [notice] 1#1: worker process 29 exited with code 0
+2024/11/27 08:16:53 [notice] 1#1: signal 29 (SIGIO) received
+2024/11/27 08:16:53 [notice] 1#1: signal 17 (SIGCHLD) received from 28
+2024/11/27 08:16:53 [notice] 1#1: worker process 28 exited with code 0
+2024/11/27 08:16:53 [notice] 1#1: worker process 30 exited with code 0
+2024/11/27 08:16:53 [notice] 1#1: signal 29 (SIGIO) received
+2024/11/27 08:16:53 [notice] 1#1: signal 17 (SIGCHLD) received from 31
+2024/11/27 08:16:53 [notice] 1#1: worker process 31 exited with code 0
+2024/11/27 08:16:53 [notice] 1#1: exit
+2024/11/27 08:16:58 [notice] 1#1: using the "epoll" event method
+2024/11/27 08:16:58 [notice] 1#1: nginx/1.27.2
+2024/11/27 08:16:58 [notice] 1#1: built by gcc 12.2.0 (Debian 12.2.0-14) 
+2024/11/27 08:16:58 [notice] 1#1: OS: Linux 5.15.146.1-microsoft-standard-WSL2
+2024/11/27 08:16:58 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2024/11/27 08:16:58 [notice] 1#1: start worker processes
+2024/11/27 08:16:58 [notice] 1#1: start worker process 28
+2024/11/27 08:16:58 [notice] 1#1: start worker process 29
+2024/11/27 08:16:58 [notice] 1#1: start worker process 30
+2024/11/27 08:16:58 [notice] 1#1: start worker process 31
+2024/11/27 08:17:41 [error] 28#28: *1 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 172.24.0.1, server: site1.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.24.0.2:9000", host: "site1.local"
+2024/11/27 08:17:45 [error] 28#28: *1 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 172.24.0.1, server: site1.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.24.0.2:9000", host: "site1.local"
+2024/11/27 08:18:38 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2024/11/27 08:18:38 [notice] 28#28: gracefully shutting down
+2024/11/27 08:18:38 [notice] 29#29: gracefully shutting down
+2024/11/27 08:18:38 [notice] 30#30: gracefully shutting down
+2024/11/27 08:18:38 [notice] 31#31: gracefully shutting down
+2024/11/27 08:18:38 [notice] 29#29: exiting
+2024/11/27 08:18:38 [notice] 30#30: exiting
+2024/11/27 08:18:38 [notice] 30#30: exit
+2024/11/27 08:18:38 [notice] 31#31: exiting
+2024/11/27 08:18:38 [notice] 29#29: exit
+2024/11/27 08:18:38 [notice] 31#31: exit
+2024/11/27 08:18:38 [notice] 1#1: signal 17 (SIGCHLD) received from 30
+2024/11/27 08:18:38 [notice] 1#1: worker process 29 exited with code 0
+2024/11/27 08:18:38 [notice] 1#1: worker process 30 exited with code 0
+2024/11/27 08:18:38 [notice] 1#1: signal 29 (SIGIO) received
+2024/11/27 08:18:38 [notice] 1#1: signal 17 (SIGCHLD) received from 31
+2024/11/27 08:18:38 [notice] 1#1: worker process 31 exited with code 0
+2024/11/27 08:18:38 [notice] 1#1: signal 29 (SIGIO) received
+2024/11/27 08:18:41 [notice] 28#28: exiting
+2024/11/27 08:18:41 [notice] 28#28: exit
+2024/11/27 08:18:41 [notice] 1#1: signal 17 (SIGCHLD) received from 28
+2024/11/27 08:18:41 [notice] 1#1: worker process 28 exited with code 0
+2024/11/27 08:18:41 [notice] 1#1: exit
+2024/11/27 08:18:45 [notice] 1#1: using the "epoll" event method
+2024/11/27 08:18:45 [notice] 1#1: nginx/1.27.2
+2024/11/27 08:18:45 [notice] 1#1: built by gcc 12.2.0 (Debian 12.2.0-14) 
+2024/11/27 08:18:45 [notice] 1#1: OS: Linux 5.15.146.1-microsoft-standard-WSL2
+2024/11/27 08:18:45 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2024/11/27 08:18:45 [notice] 1#1: start worker processes
+2024/11/27 08:18:45 [notice] 1#1: start worker process 27
+2024/11/27 08:18:45 [notice] 1#1: start worker process 28
+2024/11/27 08:18:45 [notice] 1#1: start worker process 29
+2024/11/27 08:18:45 [notice] 1#1: start worker process 30
+2024/11/27 08:18:48 [error] 27#27: *2 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 172.24.0.1, server: site1.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.24.0.2:9000", host: "site1.local"
+2024/11/27 08:18:49 [error] 27#27: *2 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 172.24.0.1, server: site1.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.24.0.2:9000", host: "site1.local"
+2024/11/27 08:18:50 [error] 27#27: *2 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 172.24.0.1, server: site1.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.24.0.2:9000", host: "site1.local"
+2024/11/27 08:18:50 [error] 27#27: *2 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 172.24.0.1, server: site1.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.24.0.2:9000", host: "site1.local"
+2024/11/27 08:18:53 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2024/11/27 08:18:53 [notice] 28#28: gracefully shutting down
+2024/11/27 08:18:53 [notice] 27#27: gracefully shutting down
+2024/11/27 08:18:53 [notice] 29#29: gracefully shutting down
+2024/11/27 08:18:53 [notice] 29#29: exiting
+2024/11/27 08:18:53 [notice] 30#30: gracefully shutting down
+2024/11/27 08:18:53 [notice] 27#27: exiting
+2024/11/27 08:18:53 [notice] 29#29: exit
+2024/11/27 08:18:53 [notice] 30#30: exiting
+2024/11/27 08:18:53 [notice] 30#30: exit
+2024/11/27 08:18:53 [notice] 27#27: exit
+2024/11/27 08:18:54 [notice] 1#1: signal 17 (SIGCHLD) received from 29
+2024/11/27 08:18:54 [notice] 1#1: worker process 27 exited with code 0
+2024/11/27 08:18:54 [notice] 1#1: worker process 29 exited with code 0
+2024/11/27 08:18:54 [notice] 1#1: signal 29 (SIGIO) received
+2024/11/27 08:18:54 [notice] 1#1: signal 17 (SIGCHLD) received from 30
+2024/11/27 08:18:54 [notice] 1#1: worker process 30 exited with code 0
+2024/11/27 08:18:54 [notice] 1#1: signal 29 (SIGIO) received
+2024/11/27 08:19:38 [notice] 1#1: using the "epoll" event method
+2024/11/27 08:19:38 [notice] 1#1: nginx/1.27.2
+2024/11/27 08:19:38 [notice] 1#1: built by gcc 12.2.0 (Debian 12.2.0-14) 
+2024/11/27 08:19:38 [notice] 1#1: OS: Linux 5.15.146.1-microsoft-standard-WSL2
+2024/11/27 08:19:38 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2024/11/27 08:19:38 [notice] 1#1: start worker processes
+2024/11/27 08:19:38 [notice] 1#1: start worker process 28
+2024/11/27 08:19:38 [notice] 1#1: start worker process 29
+2024/11/27 08:19:38 [notice] 1#1: start worker process 30
+2024/11/27 08:19:38 [notice] 1#1: start worker process 31
+2024/11/27 08:19:45 [error] 28#28: *1 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 172.24.0.1, server: site1.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.24.0.2:9000", host: "site1.local"
+2024/11/27 08:19:46 [error] 28#28: *1 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 172.24.0.1, server: site1.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.24.0.2:9000", host: "site1.local"
+2024/11/27 08:19:46 [error] 28#28: *1 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 172.24.0.1, server: site1.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.24.0.2:9000", host: "site1.local"
+2024/11/27 08:19:47 [error] 28#28: *1 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 172.24.0.1, server: site1.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.24.0.2:9000", host: "site1.local"
+2024/11/27 08:19:49 [error] 28#28: *1 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 172.24.0.1, server: site1.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.24.0.2:9000", host: "site1.local"
+2024/11/27 08:19:49 [error] 28#28: *1 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 172.24.0.1, server: site1.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.24.0.2:9000", host: "site1.local"
+2024/11/27 08:21:43 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2024/11/27 08:21:43 [notice] 28#28: gracefully shutting down
+2024/11/27 08:21:43 [notice] 30#30: gracefully shutting down
+2024/11/27 08:21:43 [notice] 30#30: exiting
+2024/11/27 08:21:43 [notice] 31#31: gracefully shutting down
+2024/11/27 08:21:43 [notice] 29#29: gracefully shutting down
+2024/11/27 08:21:43 [notice] 28#28: exiting
+2024/11/27 08:21:43 [notice] 30#30: exit
+2024/11/27 08:21:43 [notice] 31#31: exiting
+2024/11/27 08:21:43 [notice] 29#29: exiting
+2024/11/27 08:21:43 [notice] 29#29: exit
+2024/11/27 08:21:43 [notice] 28#28: exit
+2024/11/27 08:21:43 [notice] 31#31: exit
+2024/11/27 08:21:43 [notice] 1#1: signal 17 (SIGCHLD) received from 29
+2024/11/27 08:21:43 [notice] 1#1: worker process 28 exited with code 0
+2024/11/27 08:21:43 [notice] 1#1: worker process 29 exited with code 0
+2024/11/27 08:21:43 [notice] 1#1: worker process 31 exited with code 0
+2024/11/27 08:21:43 [notice] 1#1: signal 29 (SIGIO) received
+2024/11/27 08:21:43 [notice] 1#1: signal 17 (SIGCHLD) received from 30
+2024/11/27 08:21:43 [notice] 1#1: worker process 30 exited with code 0
+2024/11/27 08:21:43 [notice] 1#1: exit
+2024/11/27 08:23:02 [notice] 1#1: using the "epoll" event method
+2024/11/27 08:23:02 [notice] 1#1: nginx/1.27.2
+2024/11/27 08:23:02 [notice] 1#1: built by gcc 12.2.0 (Debian 12.2.0-14) 
+2024/11/27 08:23:02 [notice] 1#1: OS: Linux 5.15.146.1-microsoft-standard-WSL2
+2024/11/27 08:23:02 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2024/11/27 08:23:02 [notice] 1#1: start worker processes
+2024/11/27 08:23:02 [notice] 1#1: start worker process 28
+2024/11/27 08:23:02 [notice] 1#1: start worker process 29
+2024/11/27 08:23:02 [notice] 1#1: start worker process 30
+2024/11/27 08:23:02 [notice] 1#1: start worker process 31
+2024/11/27 08:33:46 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2024/11/27 08:33:46 [notice] 28#28: gracefully shutting down
+2024/11/27 08:33:46 [notice] 28#28: exiting
+2024/11/27 08:33:46 [notice] 29#29: gracefully shutting down
+2024/11/27 08:33:46 [notice] 29#29: exiting
+2024/11/27 08:33:46 [notice] 30#30: gracefully shutting down
+2024/11/27 08:33:46 [notice] 31#31: gracefully shutting down
+2024/11/27 08:33:46 [notice] 31#31: exiting
+2024/11/27 08:33:46 [notice] 28#28: exit
+2024/11/27 08:33:46 [notice] 29#29: exit
+2024/11/27 08:33:46 [notice] 30#30: exiting
+2024/11/27 08:33:46 [notice] 31#31: exit
+2024/11/27 08:33:46 [notice] 30#30: exit
+2024/11/27 08:33:46 [notice] 1#1: signal 17 (SIGCHLD) received from 28
+2024/11/27 08:33:46 [notice] 1#1: worker process 28 exited with code 0
+2024/11/27 08:33:46 [notice] 1#1: signal 29 (SIGIO) received
+2024/11/27 08:33:46 [notice] 1#1: signal 17 (SIGCHLD) received from 29
+2024/11/27 08:33:46 [notice] 1#1: worker process 29 exited with code 0
+2024/11/27 08:33:46 [notice] 1#1: signal 29 (SIGIO) received
+2024/11/27 08:33:46 [notice] 1#1: signal 17 (SIGCHLD) received from 31
+2024/11/27 08:33:46 [notice] 1#1: worker process 31 exited with code 0
+2024/11/27 08:33:46 [notice] 1#1: signal 29 (SIGIO) received
+2024/11/27 08:33:46 [notice] 1#1: signal 17 (SIGCHLD) received from 30
+2024/11/27 08:33:46 [notice] 1#1: worker process 30 exited with code 0
+2024/11/27 08:33:46 [notice] 1#1: exit
+2024/11/27 08:34:33 [notice] 1#1: using the "epoll" event method
+2024/11/27 08:34:33 [notice] 1#1: nginx/1.27.2
+2024/11/27 08:34:33 [notice] 1#1: built by gcc 12.2.0 (Debian 12.2.0-14) 
+2024/11/27 08:34:33 [notice] 1#1: OS: Linux 5.15.146.1-microsoft-standard-WSL2
+2024/11/27 08:34:33 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2024/11/27 08:34:33 [notice] 1#1: start worker processes
+2024/11/27 08:34:33 [notice] 1#1: start worker process 28
+2024/11/27 08:34:33 [notice] 1#1: start worker process 29
+2024/11/27 08:34:33 [notice] 1#1: start worker process 30
+2024/11/27 08:34:33 [notice] 1#1: start worker process 31
+2024/11/27 08:36:12 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2024/11/27 08:36:12 [notice] 29#29: gracefully shutting down
+2024/11/27 08:36:12 [notice] 29#29: exiting
+2024/11/27 08:36:12 [notice] 30#30: gracefully shutting down
+2024/11/27 08:36:12 [notice] 31#31: gracefully shutting down
+2024/11/27 08:36:12 [notice] 28#28: gracefully shutting down
+2024/11/27 08:36:12 [notice] 29#29: exit
+2024/11/27 08:36:12 [notice] 30#30: exiting
+2024/11/27 08:36:12 [notice] 31#31: exiting
+2024/11/27 08:36:12 [notice] 28#28: exiting
+2024/11/27 08:36:12 [notice] 30#30: exit
+2024/11/27 08:36:12 [notice] 31#31: exit
+2024/11/27 08:36:12 [notice] 28#28: exit
+2024/11/27 08:36:12 [notice] 1#1: signal 17 (SIGCHLD) received from 30
+2024/11/27 08:36:12 [notice] 1#1: worker process 29 exited with code 0
+2024/11/27 08:36:12 [notice] 1#1: worker process 30 exited with code 0
+2024/11/27 08:36:12 [notice] 1#1: signal 29 (SIGIO) received
+2024/11/27 08:36:12 [notice] 1#1: signal 17 (SIGCHLD) received from 28
+2024/11/27 08:36:12 [notice] 1#1: worker process 28 exited with code 0
+2024/11/27 08:36:12 [notice] 1#1: worker process 31 exited with code 0
+2024/11/27 08:36:12 [notice] 1#1: exit
+2024/11/27 08:37:09 [notice] 1#1: using the "epoll" event method
+2024/11/27 08:37:09 [notice] 1#1: nginx/1.27.2
+2024/11/27 08:37:09 [notice] 1#1: built by gcc 12.2.0 (Debian 12.2.0-14) 
+2024/11/27 08:37:09 [notice] 1#1: OS: Linux 5.15.146.1-microsoft-standard-WSL2
+2024/11/27 08:37:09 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2024/11/27 08:37:09 [notice] 1#1: start worker processes
+2024/11/27 08:37:09 [notice] 1#1: start worker process 28
+2024/11/27 08:37:09 [notice] 1#1: start worker process 29
+2024/11/27 08:37:09 [notice] 1#1: start worker process 30
+2024/11/27 08:37:09 [notice] 1#1: start worker process 31
+2024/11/27 08:42:56 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2024/11/27 08:42:56 [notice] 28#28: gracefully shutting down
+2024/11/27 08:42:56 [notice] 30#30: gracefully shutting down
+2024/11/27 08:42:56 [notice] 29#29: gracefully shutting down
+2024/11/27 08:42:56 [notice] 31#31: gracefully shutting down
+2024/11/27 08:42:56 [notice] 28#28: exiting
+2024/11/27 08:42:56 [notice] 30#30: exiting
+2024/11/27 08:42:56 [notice] 28#28: exit
+2024/11/27 08:42:56 [notice] 29#29: exiting
+2024/11/27 08:42:56 [notice] 31#31: exiting
+2024/11/27 08:42:56 [notice] 31#31: exit
+2024/11/27 08:42:56 [notice] 30#30: exit
+2024/11/27 08:42:56 [notice] 29#29: exit
+2024/11/27 08:42:56 [notice] 1#1: signal 17 (SIGCHLD) received from 28
+2024/11/27 08:42:56 [notice] 1#1: worker process 28 exited with code 0
+2024/11/27 08:42:56 [notice] 1#1: worker process 31 exited with code 0
+2024/11/27 08:42:56 [notice] 1#1: signal 29 (SIGIO) received
+2024/11/27 08:42:56 [notice] 1#1: signal 17 (SIGCHLD) received from 29
+2024/11/27 08:42:56 [notice] 1#1: worker process 29 exited with code 0
+2024/11/27 08:42:56 [notice] 1#1: signal 29 (SIGIO) received
+2024/11/27 08:42:56 [notice] 1#1: signal 17 (SIGCHLD) received from 30
+2024/11/27 08:42:56 [notice] 1#1: worker process 30 exited with code 0
+2024/11/27 08:42:56 [notice] 1#1: exit
+2024/11/27 08:51:02 [emerg] 1#1: host not found in upstream "php" in /etc/nginx/conf.d/site1.conf:14
+2024/11/27 08:51:42 [emerg] 1#1: host not found in upstream "php" in /etc/nginx/conf.d/site1.conf:14
+2024/11/27 08:54:31 [emerg] 1#1: host not found in upstream "php" in /etc/nginx/conf.d/site1.conf:14
+2024/11/27 08:54:34 [emerg] 1#1: host not found in upstream "php" in /etc/nginx/conf.d/site1.conf:14
+2024/11/27 08:54:45 [emerg] 1#1: host not found in upstream "php" in /etc/nginx/conf.d/site1.conf:14
+2024/11/27 08:57:28 [emerg] 1#1: host not found in upstream "php" in /etc/nginx/conf.d/site1.conf:14
+2024/11/27 09:00:58 [notice] 1#1: using the "epoll" event method
+2024/11/27 09:00:58 [notice] 1#1: nginx/1.27.2
+2024/11/27 09:00:58 [notice] 1#1: built by gcc 12.2.0 (Debian 12.2.0-14) 
+2024/11/27 09:00:58 [notice] 1#1: OS: Linux 5.15.146.1-microsoft-standard-WSL2
+2024/11/27 09:00:58 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2024/11/27 09:00:58 [notice] 1#1: start worker processes
+2024/11/27 09:00:58 [notice] 1#1: start worker process 28
+2024/11/27 09:00:58 [notice] 1#1: start worker process 29
+2024/11/27 09:00:58 [notice] 1#1: start worker process 30
+2024/11/27 09:00:58 [notice] 1#1: start worker process 31

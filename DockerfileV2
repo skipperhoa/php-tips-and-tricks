@@ -35,6 +35,7 @@ RUN apk add --no-cache mysql-client msmtp perl wget procps shadow libzip libpng 
     #- exif: Xử lý metadata của ảnh.
     #- zip: Nén và giải nén file.
 # Sau khi cài đặt xong, các công cụ build được gỡ bỏ để giảm kích thước image (apk del build-essentials).
+RUN docker-php-ext-install pdo_mysql
 RUN apk add --no-cache --virtual build-essentials \
     icu-dev icu-libs zlib-dev g++ make automake autoconf libzip-dev \
     libpng-dev libwebp-dev libjpeg-turbo-dev freetype-dev && \
@@ -47,6 +48,8 @@ RUN apk add --no-cache --virtual build-essentials \
     docker-php-ext-install exif && \
     docker-php-ext-install zip && \
     apk del build-essentials && rm -rf /usr/src/php*
+
+
 #---------------------------------------------------------------
 
 # Bước 5: 

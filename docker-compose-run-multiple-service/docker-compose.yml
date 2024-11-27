@@ -1,0 +1,56 @@
+version: "3.9"
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./php-config/hosts:/etc/nginx/conf.d
+      - ./php-config/sites:/var/www
+      - ./php-config/logs/nginx:/var/log/nginx
+    depends_on:
+      - app
+    networks:
+      - network_hoacode # Kết nối dịch vụ này vào mạng , ví dụ : networkHoaCoder
+
+  app:
+    image: php:8.1-fpm
+    container_name: app-container
+    build:
+      context: .                   # Chỉ định thư mục hiện tại làm chứa Dockerfile
+      dockerfile: Dockerfile    # Xây dựng image PHP từ Dockerfile
+    volumes:
+      - ./php-config/sites:/var/www/html
+      - ./php-config/conf:/usr/local/etc/php
+    expose:
+      - "9000"  # PHP sẽ lắng nghe trên cổng 9000
+    depends_on:
+      - mysql
+    networks:
+      - network_hoacode # Kết nối dịch vụ này vào mạng , ví dụ : networkHoaCoder
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678  # Đặt mật khẩu cho root
+      MYSQL_DATABASE: db_hoacode         # Tạo một cơ sở dữ liệu mặc định
+      MYSQL_USER: hoacode                   # Tạo người dùng cho ứng dụng
+      MYSQL_PASSWORD: 12345678       # Đặt mật khẩu cho người dùng
+    volumes:
+      - mysql-data:/var/lib/mysql        # Lưu trữ dữ liệu MySQL giữa các lần khởi động lại
+    expose:
+      - "3306"                           # Mở cổng MySQL để kết nối từ các container khác
+    networks:
+      - network_hoacode # Kết nối dịch vụ này vào mạng , ví dụ : networkHoaCoder
+
+ 
+volumes:
+  sites:
+  logs:
+  mysql-data:
+
+networks:
+  network_hoacode:
+    driver: bridge

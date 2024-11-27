@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  php:
+    image: php:8.1-fpm
+    container_name: php-container
+    volumes:
+      - ./sites:/var/www/html
+      - ./php-config/php.ini:/usr/local/etc/php
+    expose:
+      - "9000"  # PHP sẽ lắng nghe trên cổng 9000
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./php-config/hosts:/etc/nginx/conf.d
+      - ./php-config/sites:/var/www
+      - ./php-config/logs/nginx:/var/log/nginx
+    depends_on:
+      - php
+volumes:
+  sites:
+  logs:
