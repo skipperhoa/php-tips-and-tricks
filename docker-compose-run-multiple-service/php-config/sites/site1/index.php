@@ -1,6 +1,5 @@
 <?php 
-    phpinfo();
-    exit;
+  
 
 $servername = "mysql";  // Tên dịch vụ của MySQL trong Docker Compose
 $username = "hoacode";
