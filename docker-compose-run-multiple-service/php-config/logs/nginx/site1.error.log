@@ -1,6 +1,0 @@
-2024/11/27 08:08:10 [error] 29#29: *2 directory index of "/var/www/site1/" is forbidden, client: 172.24.0.1, server: site1.local, request: "GET / HTTP/1.1", host: "site1.local"
-2024/11/27 08:08:10 [error] 29#29: *2 directory index of "/var/www/site1/" is forbidden, client: 172.24.0.1, server: site1.local, request: "GET / HTTP/1.1", host: "site1.local"
-2024/11/27 08:08:11 [error] 29#29: *2 directory index of "/var/www/site1/" is forbidden, client: 172.24.0.1, server: site1.local, request: "GET / HTTP/1.1", host: "site1.local"
-2024/11/27 08:08:11 [error] 29#29: *2 directory index of "/var/www/site1/" is forbidden, client: 172.24.0.1, server: site1.local, request: "GET / HTTP/1.1", host: "site1.local"
-2024/11/27 08:08:29 [error] 29#29: *2 directory index of "/var/www/site1/" is forbidden, client: 172.24.0.1, server: site1.local, request: "GET / HTTP/1.1", host: "site1.local"
-2024/11/27 08:08:59 [error] 29#29: *2 directory index of "/var/www/site1/" is forbidden, client: 172.24.0.1, server: site1.local, request: "GET / HTTP/1.1", host: "site1.local"

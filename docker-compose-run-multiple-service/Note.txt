@@ -1,2 +1,122 @@
 # Run Docker Compose 
 docker-compose up -d
+
+# Mở file host của window chỉnh lại :
+Cấu hình file /etc/hosts trên máy host
+Để truy cập các domain từ máy của bạn, thêm các dòng sau vào file /etc/hosts:
+
+127.0.0.1 site1.local
+127.0.0.1 site2.local
+
+Trên Linux/macOS: Mở tệp /etc/hosts và thêm dòng:
+
+127.0.0.1 site1.local
+127.0.0.1 site2.local
+
+
+# tạo ssl 
+Tạo thư mục để lưu chứng chỉ SSL và khóa riêng:
+
+mkdir -p ./nginx/ssl
+chmod 777 ./nginx/ssl
+Tạo khóa riêng (private key) và chứng chỉ (certificate):
+
+openssl req -new -newkey rsa:2048 -days 365 -nodes -keyout ./nginx/ssl/private.key -out ./nginx/ssl/certificate.crt
+
+
+Cách nhập 👍
+Country Name (2 letter code) [AU]: VN
+State or Province Name (full name) [Some-State]: Ho Chi Minh
+Locality Name (e.g., city) []: Ho Chi Minh City
+Organization Name (e.g., company) [Internet Widgits Pty Ltd]: My Company
+Organizational Unit Name (e.g., section) []: IT Department
+Common Name (e.g., server FQDN or YOUR name) []: site1.local
+Email Address []: admin@mycompany.com
+
+
+openssl x509 -in ./nginx/ssl/certificate.crt -out ./nginx/ssl/certificate.pem -outform PEM
+
+https://stackoverflow.com/questions/51899844/nginx-ssl-no-start-line-expecting-trusted-certificate 
+openssl req -trustout -x509 -newkey rsa:4096 -sha256 -nodes -keyout privkey.pem -out fullchain.pem -days 3650
+
+sudo openssl dhparam -out dhparam-2048.pem 2048
+
+
+openssl req -x509 -newkey rsa:2048 -keyout private.pem -out fullchain.pem -days 365 -nodes \
+-subj "/C=VN/ST=HCM/L=HCM/O=HO CHI MINH/OU=HO CHI MINH/CN=site1.local" \
+-addext "subjectAltName=DNS:site1.local"
+
+
+Xem ngay het han cua chung Chi
+root@ff102d0cd0d2:/# openssl x509 -in /etc/letsencrypt/live/site1.local/fullchain.pem -text -noout | grep "Not After"
+            Not After : Nov 28 07:38:28 2025 GMT
+
+6. Kiểm Tra Kết Nối SSL
+Dùng lệnh openssl để kiểm tra:
+
+openssl s_client -connect site1.local:443 -servername site1.local
+
+
+
+3. Tạo chứng chỉ SSL tự ký (Self-Signed)
+Nếu bạn chỉ muốn chứng chỉ SSL cho mục đích phát triển và thử nghiệm (không phải từ Let's Encrypt), bạn có thể tạo một chứng chỉ SSL tự ký:
+
+openssl genpkey -algorithm RSA -out /etc/ssl/private/selfsigned.key
+openssl req -new -key /etc/ssl/private/selfsigned.key -out /etc/ssl/certs/selfsigned.crt
+
+
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name site1.local;
+    root /var/www/html/site1;
+    index index.php index.html index.htm;
+    
+    # Chuyển hướng HTTP sang HTTPS
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+    location ~ /.well-known/acme-challenge {
+        allow all;
+        root /etc/nginx/ssl/;
+    }
+    # Chuyển hướng HTTP sang HTTPS
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name site1.local;
+
+    ssl_certificate /etc/letsencrypt/live/site1.local.crt;
+    ssl_certificate_key /etc/letsencrypt/live/site1.local.key;
+
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers 'TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384';
+    ssl_prefer_server_ciphers on;
+
+    # Header bảo mật SSL (Optional, có thể giúp bảo mật tốt hơn)
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+
+    root /var/www/html/site1;
+    index index.php index.html index.htm;
+    
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ /.well-known/acme-challenge {
+        allow all;
+        root /etc/nginx/ssl/;
+    }
+
+    location ~ \.php$ {
+        include fastcgi_params;
+        fastcgi_pass app:9000;  # Trỏ đến container PHP (tên service là php)
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+}
+
+
