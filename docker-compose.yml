@@ -1,4 +1,6 @@
-# Định nghĩa phiên bản của Docker Compose. Phiên bản 3.8 hỗ trợ các tính năng mới nhất (tương thích với Docker Engine hiện đại).
+
+# Định nghĩa phiên bản của Docker Compose. 
+# Phiên bản 3.8 hỗ trợ các tính năng mới nhất (tương thích với Docker Engine hiện đại).
 version: '3.8'  
 services: # Chứa định nghĩa của từng dịch vụ.
   app: # chạy PHP (với Dockerfile được xây dựng tùy chỉnh)
@@ -33,7 +35,8 @@ services: # Chứa định nghĩa của từng dịch vụ.
       - "3306:3306"                # Map cổng 3306 (cổng mặc định của MySQL) trên container với máy host
     volumes:
       - 'db-mysql:/var/lib/mysql'  # db-mysql: Volume lưu trữ dữ liệu MySQL.
-      - ./db_hoanguyencoder.sql:/docker-entrypoint-initdb.d/db_hoanguyencoder.sql  # Tệp db_hoanguyencoder.sql từ máy host sẽ được nạp khi container khởi động (đặt vào /docker-entrypoint-initdb.d/).
+      # Tệp db_hoanguyencoder.sql từ máy host sẽ được nạp khi container khởi động (đặt vào /docker-entrypoint-initdb.d/).
+      - ./db_hoanguyencoder.sql:/docker-entrypoint-initdb.d/db_hoanguyencoder.sql  
     networks:
       - networkHoaCoder   # Kết nối dịch vụ vào mạng networkHoaCoder
 
@@ -56,3 +59,7 @@ volumes:
     db-mysql:
         driver: local  # driver: local: Volume lưu trữ dữ liệu MySQL để không bị mất khi container dừng.
   
+
+
+
+
