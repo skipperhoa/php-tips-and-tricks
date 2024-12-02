@@ -26,6 +26,9 @@ root@e2dae7224f8c:/data# redis-cli -h 172.27.0.2 -p 6379
 PONG                                                                                                                                                          
 172.27.0.2:6379>   
 ----------------------------------------------------------------
+redis-cli
+127.0.0.1:6379> CONFIG SET requirepass "12345678"
+----------------------------------------------------------------
 Using Redis on Docker (docker-compose.yml) in PHP
 
 composer require predis/predis

@@ -50,7 +50,6 @@ services: # Chứa định nghĩa của từng dịch vụ.
     restart: always   # Đảm bảo container tự động khởi động lại nếu bị dừng (do lỗi hoặc restart hệ thống).
     ports:
       - "6379:6379"  #  Map cổng 6379 của máy host sang container. Đây là cổng mặc định Redis sử dụng
-    command: redis-server --requirepass 12345678 # Đặt mật khẩu cho Redis
     volumes:
       - /redis/dаta:/root/redis 
       - /redis/redis.conf:/usr/local/etc/redis/redis.conf 
