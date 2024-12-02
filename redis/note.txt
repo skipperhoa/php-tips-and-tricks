@@ -1,0 +1,32 @@
+bind 0.0.0.0: Cho phép Redis lắng nghe trên tất cả các IP.
+protected-mode yes: Bật chế độ bảo vệ.
+port 6379: Cổng Redis.
+requirepass 12345678: Đặt mật khẩu (phải trùng với REDIS_PASSWORD).
+databases 16: Cấu hình số databases Redis.
+--------------------------------------------------------
+Kiem tra IP cua container
+docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" redis
+172.27.0.2
+
+redis-cli -h <container_IP> -p 6379
+
+
+E:\FullStackDeveloper\PHP Tips and Tricks (main -> origin)                                                                                                    
+λ docker ps                                                                                                                                                   
+CONTAINER ID   IMAGE                  COMMAND                  CREATED          STATUS          PORTS                               NAMES                     
+4265e493f7b4   nginx:latest           "/docker-entrypoint.…"   10 minutes ago   Up 10 minutes   0.0.0.0:8080->80/tcp                phptipsandtricks-nginx-1  
+07f45101d310   phptipsandtricks-app   "docker-php-entrypoi…"   10 minutes ago   Up 10 minutes   9000/tcp                            phptipsandtricks-app-1    
+e2dae7224f8c   redis:latest           "docker-entrypoint.s…"   10 minutes ago   Up 10 minutes   0.0.0.0:6379->6379/tcp              redis                     
+6dfb650b0dac   mysql:5.7              "docker-entrypoint.s…"   42 hours ago     Up 10 minutes   0.0.0.0:3306->3306/tcp, 33060/tcp   phptipsandtricks-db-1     
+                                                                                                                                                              
+E:\FullStackDeveloper\PHP Tips and Tricks (main -> origin)                                                                                                    
+λ docker exec -it redis bash                                                                                                                                  
+root@e2dae7224f8c:/data# redis-cli -h 172.27.0.2 -p 6379                                                                                                      
+172.27.0.2:6379> ping                                                                                                                                         
+PONG                                                                                                                                                          
+172.27.0.2:6379>   
+----------------------------------------------------------------
+Using Redis on Docker (docker-compose.yml) in PHP
+
+composer require predis/predis
+                                                                                                                                                              
