@@ -2,10 +2,10 @@
 
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "Hoa@1234";
 
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=laravel10", $username, $password);
+    $conn = new PDO("mysql:host=$servername;dbname=laravel_app", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     echo "Connected successfully";
@@ -13,14 +13,12 @@ try {
     echo "Connection failed: " . $e->getMessage();
 }
 
-
-
 class Database
 {
     private $host = "localhost";
-    private $db_name = "laravel10";
+    private $db_name = "laravel_app";
     private $username = "root";
-    private $password = "";
+    private $password = "Hoa@1234";
     public $conn;
 
     public function __construct()
@@ -43,20 +41,23 @@ if ($db->conn) {
 }
 
 
+
+
 // getUsers  
 
-$request = $conn->prepare("SELECT * FROM users");
+$request = $conn->prepare("SELECT * FROM users order by id asc");
 $request->execute();
 $results = $request->fetchAll(PDO::FETCH_ASSOC);
 // if($results){
 //     print_r($results);
 // }
 
-//getUserById -->
 
-$id = 1; // Example user ID
-$request = $conn->prepare("SELECT * FROM users WHERE id = :id");
-$request->bindParam(':id', $id);
+
+//getUserById -->
+$user_id = 1; // Example user ID
+$request = $conn->prepare("SELECT * FROM users WHERE id = :user_id");
+$request->bindParam(':user_id', $user_id);
 $request->execute();
 $user = $request->fetch(PDO::FETCH_ASSOC);
 if($user){
@@ -66,10 +67,11 @@ if($user){
 }
 
 
+
 // createUser -->
 
-$name = "Hoa Nguyen Coder";
-$email = "hoacode123@hoanguyenit.com";
+ $name = "Hoa Nguyen Coder";
+$email = "hoadev123@hoanguyenit.com";
 $password = "password123";
 $request = $conn->prepare("INSERT INTO users (name, email, password) VALUES (:name, :email, :password)");
 $request->bindParam(':name', $name);
@@ -81,14 +83,14 @@ if ($newUserId) {
     echo "New user created successfully with ID: " . $newUserId;
 } else {
     echo "Failed to create new user.";
-}  
-
+}   
+//return ;
 
 // updateUser -->
 
-$id = 28; // Example user ID
+$id = 1; // Example user ID
 $name = "Updated Name";
-$email = "updated123@hoanguyenit.com";
+$email = "updated1234567@hoanguyenit.com";
 $request = $conn->prepare("UPDATE users SET name = :name, email = :email WHERE id = :id");
 $request->bindParam(':name', $name);
 $request->bindParam(':email', $email);
@@ -102,7 +104,7 @@ if ($request->rowCount() > 0) {
 
 //deleteUser -->
 
-$id = 28; // Example user ID
+$id = 19; // Example user ID
 $request = $conn->prepare("DELETE FROM users WHERE id = :id");
 $request->bindParam(':id', $id);
 $request->execute();
